@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title></title>
+  <link rel="stylesheet" href="styles/default.css">
+  <link rel="stylesheet" href="styles/icons.css">
+</head>
+<body class="default-theme">
+  <header>
+    <img class="p-3" width="85" src="img/logo.svg">
+    <ul id="header-menu">
+      <li>
+        <span class="header-menu">
+          Inicio
+        </span>
+      </li>
+      <li>
+        <div class="header-menu">
+          <span>Operaciones</span>
+          <ul class="header-submenu" hidden>
+              <li>
+                <a class="dropdown-link" href="transferir_dinero.html">
+                  <span class="icon icon-transaction-r"></span>
+                  <p>Transferir dinero</p>
+                </a>
+              </li>
+              <li>
+                <a class="dropdown-link" href="ingresar_celular.html">
+                  <span class="icon icon-paper-plane-r"></span>
+                  <p>Yapear a celular</p>
+                </a>
+              </li>
+              <li>
+                <a class="dropdown-link" href="#">
+                  <span class="icon icon-card-credit-r"></span>
+                  <p>Realizar pagos</p>
+                </a>
+              </li>
+              <li>
+                <a class="dropdown-link" href="#">
+                  <span class="icon icon-document-b"></span>
+                  <p>Ver estados de cuenta</p>
+                </a>
+              </li>
+          </ul>
+        </div>
+      </li>
+      <li>
+        <div class="header-menu">
+          <span>Explora</span>
+          <ul class="header-submenu" hidden>
+            <li>
+              <a class="dropdown-link" href="#">
+                <span class="icon icon-atm-r"></span>
+                <p>Adelanto de sueldo</p>
+              </a>
+            </li>
+            <li>
+              <a class="dropdown-link" href="#">
+                <span class="icon icon-bill-r"></span>
+                <p>Disposición de efectivo</p>
+              </a>
+            </li>
+            <li>
+              <a class="dropdown-link" href="#">
+                <span class="icon icon-money-bag-soles-r"></span>
+                <p>Fondos mutuos</p>
+              </a>
+            </li>
+            <li>
+              <a class="dropdown-link" href="#">
+                <span class="icon icon-bank-r"></span>
+                <p>Capital de trabajo</p>
+              </a>
+            </li>
+            <li>
+              <a class="dropdown-link" href="#">
+                <span class="icon icon-shield-insurance-r"></span>
+                <p>Seguro de protección de tarjetas</p>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </li>
+      <li>
+        <div class="header-menu">
+          <button class="account-button">
+            <span class="account-button-text">B</span>
+            <i id="account-button-icon" class="icon icon-angle-up text-white"></i>
+          </button>
+          <ul class="header-submenu" hidden>
+            <li>
+              <div id="account-submenu-header">
+                <span class="account-button">
+                  <span class="account-button-text">B</span>
+                </span>
+                Jefferson
+              </div>
+            </li>
+            <hr id="account-submenu-hr">
+            <li>
+              <a class="dropdown-link" href="#">
+                <span class="icon icon-mail-r"></span>
+                <p>Actualizar correo</p>
+              </a>
+            </li>
+            <li>
+              <a class="dropdown-link" href="#">
+                <span class="icon icon-star-r"></span>
+                <p>Administrador de favoritos</p>
+              </a>
+            </li>
+            <li>
+              <a class="dropdown-link" href="#">
+                <span class="icon icon-pen-r"></span>
+                <p>Administrador de productos</p>
+              </a>
+            </li>
+            <li>
+              <a class="dropdown-link" href="#">
+                <span class="icon icon-lock-r"></span>
+                <p>Cambio de clave internet</p>
+              </a>
+            </li>
+            <li>
+              <a class="dropdown-link" href="#">
+                <span class="icon icon-smartphone-b"></span>
+                <p>Recibir dinero por celular</p>
+              </a>
+            </li>
+            <li>
+              <a id="logout-button" href="#">
+                <span class="icon icon-sign-out-r"></span>
+                <p>Cerrar sesión</p>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </li>
+    </ul>
+  </header>
+  <div id="focusModal" hidden></div>
+  
+  <div id="container">
+    <ul id="url">
+      <li><a>Inicio</a></li>
+      <li>Mis productos</li>
+    </ul>
+
+    <div id="main-content">
+      A
+    </div>
+  </div>
+
+  <script src="scripts/header.js"></script>
+</body>
+</html>

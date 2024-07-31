@@ -1,0 +1,249 @@
+@font-face {
+  font-family: Flexo-Regular;
+  font-weight: 400;
+  src: url(/fonts/flexo-regular.woff2) format("woff2");
+  font-display: swap
+}
+
+@font-face {
+  font-family: Flexo-Demi;
+  font-weight: 400;
+  src: url(/fonts/flexo-demi.woff2) format("woff2");
+  font-display: swap
+}
+
+.default-theme {
+  --blue: #002a8d;
+  --orange: #ff7800;
+  --black: #202e44;
+  --gray: #868f9e;
+  --light-blue: #3d77ff;
+  margin: 0;
+  font-family: "Flexo-Regular", helvetica, arial, sans-serif;
+}
+
+.p-3 {
+  padding: 0.65rem;
+}
+
+.text-blue {
+  color: var(--blue);
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-white {
+  color: white;
+}
+
+#container {
+  padding: 3.25rem 20%;
+}
+
+header {
+  z-index: 10;
+  width: 100%;
+  position: fixed;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  background-color: var(--blue);
+  padding: 0 20%;
+}
+
+#header-menu {
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  margin: 0;
+  padding: 0;
+}
+
+#header-menu > li {
+  list-style-type: none;
+  display: flex;
+  position: relative;
+}
+
+.header-menu {
+  position: relative;
+  font-size: small;
+  border: 0;
+  text-align: center;
+  padding: 1.25rem 1rem;
+  color: white;
+  align-self: center;
+  font-weight: bold;
+}
+
+.header-menu:after {
+  content: '';
+  display: block;
+  position: absolute;
+      bottom: 0; right: 0;
+  width: 100%;
+  transform: scaleX(0);
+  height: 0.2rem;
+  background: var(--orange);
+  transition: transform 300ms;
+}
+
+.header-menu:hover::after {
+  transform: scaleX(1);
+  transition: transform 300ms;
+}
+
+.header-submenu {
+  position: absolute;
+  margin-top: 1.25rem;
+  color: var(--black);
+  width: max-content;
+  padding: 0;
+  transform: translateX(-75%);
+  border-radius: 5px;
+  background-color: white;
+  list-style-type: none;
+  z-index: 1;
+}
+
+.dropdown-link {
+  font-family: "Flexo-Demi", helvetica, arial, sans-serif;
+  font-size: 0.875rem;
+  display: flex;
+  padding: 1rem 1rem;
+  color: var(--black);
+  text-decoration: none;
+}
+
+.dropdown-link :last-child {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 0;
+  font-size: small;
+}
+
+.dropdown-link .icon {
+  color: var(--light-blue);
+  padding: 0 0.5rem;
+  font-size: 21px;
+}
+
+.dropdown-link:after {
+  color: var(--gray);
+  flex-grow: 1;
+  text-align: end;
+  padding-left: 5rem;
+  font-family: icon;
+  content: "\f111";
+} 
+
+.account-button {
+  height: 1rem;
+  display: flex;
+  margin: auto;
+  background: transparent;
+  border: 0;
+  align-items: center;
+  column-gap: 0.75rem;
+}
+
+.account-button-text {
+  width: 27px;
+  height: 27px;
+  line-height: 27px;
+  color: white;
+  border-radius: 50%;
+  background-color: coral;
+}
+
+#url {
+  margin: 0;
+  padding: 1.75rem;
+  display: flex;
+  list-style-type: none;
+}
+
+#url li  {
+  display: flex;
+  color: var(--black);
+  font-size: small;
+  font-weight: bold;
+}
+
+#url li:not(:last-child) {
+  color: rgb(115, 126, 142);
+}
+
+#url li:not(:last-child)::after {
+  margin-left: 10px;
+  margin-right: 10px;
+  font-family: icon;
+  content: "\f111";
+}
+
+#main-content {
+  width: 500px;
+  margin: auto;
+}
+
+#focusModal {
+  background-color: var(--black);
+  opacity: 0.2;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+}
+
+#account-submenu-header {
+  display: flex;
+  padding: 1rem 0;
+  row-gap: 1rem;
+  flex-direction: column;
+}
+
+hr {
+  border: 0;
+  border-top: 1px solid var(--gray);
+  opacity: 0.3;  border: 1px solid #cacaca;
+}
+
+#logout-button {
+  display: flex;
+  text-align: start;
+  text-decoration: none;
+  color: var(--orange);
+  font-size: large;
+}
+
+#logout-button .icon {
+  padding: 0 1rem;
+}
+
+/*Input*/
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.input-floating-group {
+  position: relative;
+}
+
+.input-floating-group input {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid var(--gray);
+  border-radius: 0.5rem;
+}
+
+.input-floating-group label {
+  position: absolute;
+  transform: translateY(50%);
+  z-index: 1;
+}

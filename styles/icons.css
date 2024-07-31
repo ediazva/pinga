@@ -1,0 +1,108 @@
+@font-face {
+  font-family: icon;
+  src: url(/fonts/icons.woff2) format("woff2");
+  font-weight: 400;
+  font-style: normal
+}
+
+.icon {
+  font-family: icon,sans-serif;
+  display: flex;
+  justify-content: center;
+  align-self: center;
+  line-height: 1;
+  font-weight: 400;
+  font-style: normal;
+  text-decoration: inherit;
+  text-transform: none;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+}
+
+.icon-angle-up:before {
+  content: "\f112";
+}
+
+.icon-angle-right:before {
+  content: "\f111";
+}
+
+.icon-angle-up:before {
+  content: "\f112";
+}
+
+.icon-transaction-r:before {
+  content: "\f2fb"
+}
+
+.icon-paper-plane-r:before {
+  content: "\f27c";
+}
+
+.icon-card-credit-r:before {
+  content: "\f157";
+}
+
+.icon-document-b:before {
+  content: "\f19d";
+}
+
+.icon-atm-r:before {
+  content: "\f120";
+}
+
+.icon-bill-r:before {
+  content: "\f133";
+}
+
+.icon-money-bag-soles-r:before {
+  content: "\f264";
+}
+
+.icon-bank-r:before {
+  content: "\f12d";
+}
+
+.icon-shield-insurance-r:before {
+  content: "\f2b9"
+}
+
+.icon-mail-r:before {
+  content: "\f234";
+}
+
+.icon-star-r:before {
+  content: "\f2de";
+}
+
+.icon-pen-r:before {
+  content: "\f280";
+}
+
+.icon-lock-r:before {
+  content: "\f231";
+}
+
+.icon-smartphone-b:before {
+  content: "\f2c4";
+}
+
+.icon-sign-out-r:before {
+  content: "\f2c3";
+}
+
+.icon-cards-r:before {
+  content: "\f166";
+}
+
+.icon-persons-r:before {
+  content: "\f28c"
+}
+
+.icon-world-r:before {
+  content: "\f329"
+}
+
+.icon-money-dollars-exchange-r:before {
+  content: "\f268";
+}

@@ -1,0 +1,20 @@
+.input-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.input-floating-group {
+  position: relative;
+}
+
+.input-floating-group input {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid var(--gray);
+}
+
+.input-floating-group label {
+  position: absolute;
+  transform: translateY(50%);
+  z-index: 1;
+}
