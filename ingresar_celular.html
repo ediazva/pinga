@@ -6,9 +6,6 @@
   <title>Transferir dinero</title>
   <link rel="stylesheet" href="styles/default.css">
   <link rel="stylesheet" href="styles/icons.css">
-  <style>
-
-  </style>
 </head>
 <body class="default-theme">
   <div id="container">
@@ -20,16 +17,37 @@
     <div id="main-content">
       <h2 class="text-blue text-center">Enviar a celular</h2>
       <form>
-        <caption>Enviar a</caption>
-        <div class="input-group">
+        <p class="fw-demi text-blue">Enviar a</p>
+        <div id="form-group" class="input-group">
           <div class="input-floating-group">
+            <input id="number" type="tel" placeholder="">
             <label>Ingresa un celular</label>
-            <input>
           </div>
-          <label class="input-bottom-label">Ingresa los 9 dígitos</label>
+          <label id="label">Ingresa los 9 dígitos</label>
         </div>
+        <button>Continuar</button>
       </form>
     </div>
   </div>
+
+  <script src="scripts/items.js"></script>
+  
+  <script>
+    const input_number = document.getElementById("number");
+
+    input_number.addEventListener("input", ev => {
+      const label = document.getElementById("label");
+      const group = document.getElementById("form-group");
+
+      const value = input_number.value;
+      if(value.length == 0 || value.charAt(0) == "9") {
+        label.textContent = "Ingresa los 9 dígitos";
+        group.removeAttribute("data-status");
+      } else {
+        label.textContent = "El número de celular debe empezar con 9";
+        group.setAttribute("data-status", "error");
+      }
+    });
+  </script>
 </body>
 </html>

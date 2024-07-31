@@ -12,11 +12,19 @@
   font-display: swap
 }
 
+@font-face {
+  font-family: Flexo-Bold;
+  font-weight: 400;
+  src: url(/fonts/flexo-bold.woff2) format("woff2");
+  font-display: swap
+}
+
 .default-theme {
   --blue: #002a8d;
   --orange: #ff7800;
   --black: #202e44;
   --gray: #868f9e;
+  --focus-blue: #0a47f0;
   --light-blue: #3d77ff;
   margin: 0;
   font-family: "Flexo-Regular", helvetica, arial, sans-serif;
@@ -32,6 +40,10 @@
 
 .text-center {
   text-align: center;
+}
+
+.fw-demi {
+  font-family: "Flexo-Demi";
 }
 
 .text-white {
@@ -224,25 +236,171 @@ hr {
   padding: 0 1rem;
 }
 
-/*Input*/
+/*Form*/
+form {
+  display: flex;
+  flex-direction: column;
+}
 
+form button {
+  font-family: "Flexo-Demi";
+  width: fit-content;
+  margin: auto;
+  color: white;
+  background-color: var(--orange);
+  border: 0;
+  border-radius: 1.5rem;
+  padding: 0.75rem 4rem;
+  transition: all 250ms ease;
+}
+
+form button:hover {
+  box-shadow: 0 0 0.5rem -0.2rem var(--black);
+  filter: brightness(120%);
+}
+
+/*Input*/
 .input-group {
   display: flex;
   flex-direction: column;
+  margin-bottom: 1rem;
 }
 
 .input-floating-group {
   position: relative;
 }
 
+.input-floating-group + label {
+  color: var(--gray);
+  font-size: small;
+  padding-left: 1rem;
+  padding-top: 0.2rem;
+}
+
 .input-floating-group input {
   width: 100%;
-  padding: 0.75rem;
+  box-sizing: border-box;
+  padding: 1rem;
   border: 1px solid var(--gray);
   border-radius: 0.5rem;
+  background-color: transparent;
+}
+
+.input-floating-group input:hover {
+  border: 1px solid var(--focus-blue);
+}
+
+.input-floating-group input:focus {
+  outline: 2px solid var(--focus-blue);
+  outline-offset: -2px;
+}
+
+.input-floating-group input:not(:placeholder-shown) + label {
+  top: 0;
+  z-index: 1;
+  color: var(--focus-blue);
+  font-family: Flexo-Demi;
+  font-size: small;
 }
 
 .input-floating-group label {
+  pointer-events: none;
+  background-color: white;
+  position: absolute;
+  font-family: "Flexo-Bold", helvetica, arial, sans-serif;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: -1; 
+  color: var(--gray);
+  margin: 0 1rem;
+  transition: all 250ms ease-in-out;
+}
+
+.input-group[data-status="error"] .input-floating-group input {
+  border: 1px solid red;
+}
+
+.input-group[data-status="error"] .input-floating-group input:focus {
+  outline: 2px solid red;
+}
+.input-group[data-status="error"] .input-floating-group input:not(:placeholder-shown) + label {
+  color: red;
+}
+
+.input-group[data-status="error"] .input-floating-group + label {
+  color: red;
+}
+
+.bienvenida {
+  z-index: -1;
+  position: absolute;
+  background-color: #002a8d;
+  background-image: none;
+  background-position-x: 100%;
+  background-position-y: 50%; 
+  background-repeat: no-repeat;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  font-family: "Flexo-Regular", helvetica, arial, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  width: 100%;
+  height: 153px;
+  margin-top: 56px;
+  justify-content: center;
+  line-height: 24px;
+  text-align: left;
+  visibility: visible;
+}
+
+.container-bienvenida {
+  margin: auto;
+  max-width: 1140px;
+  width: 1140px;
+}
+
+.imagen-bienvenida {
+  align-items: flex-start;
+  background-image: url("../img/greeting-desktop.svg");
+  background-position-x: 100%;
+  background-position-y: 0%;
+  background-repeat: no-repeat;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  height: 153px;
+  justify-content: center;
+}
+
+
+.bienvenida-p {
+  box-sizing: border-box;
+  color: white;
+  display: block;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 18px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  text-align: left;
+  margin-bottom: 16px;
+}
+
+.bienvenida-h2 {
+  box-sizing: border-box;
+  color: white;
+  display: block;
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 32px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  text-align: left;
+}
+
+.main-wrapper {
   position: absolute;
   transform: translateY(50%);
   z-index: 1;
