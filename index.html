@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="styles/icons.css">
 </head>
 <body class="default-theme">
+  <div class="header-wrapper">
   <header>
     <img class="p-3" width="85" src="img/logo.svg">
     <ul id="header-menu">
@@ -141,17 +142,52 @@
       </li>
     </ul>
   </header>
+  </div>
   <div id="focusModal" hidden></div>
-  
-  <div id="container">
-    <ul id="url">
-      <li><a>Inicio</a></li>
-      <li>Mis productos</li>
-    </ul>
 
-    <div id="main-content">
-      A
+  <div class="bienvenida">
+    <div class="container-bienvenida">
+      <div class="imagen-bienvenida">
+        <p class="bienvenida-p">Última sesión fue 30 julio 2024 a las 01:06 hrs</p>
+        <h2 class="bienvenida-h2">Hola, Alberto</h2>
+      </div>
     </div>
+  </div>
+
+  <div class="main-wrapper">
+  <div id="main-content">
+      <div id="main-left">
+        <p class="title">¿Qué vamos a hacer hoy?</p>
+        <div class="content-side">
+          <div id="options-left">
+            <div class="option-left"><img src="img/transferir.png"><br>Transferir <br> dinero</div>
+            <div class="option-left"><img src="img/yapear.png"><br>Yapear <br> a celular</div>
+            <div class="option-left"><img src="img/tarjetas.png"><br>Pagar <br> tarjetas</div>
+            <div class="option-left"><img src="img/servicios.png"><br>Pagar <br> servicios</div>
+          </div>
+        </div>
+        <div class="info-div" style="background-color: #002A8D;">
+          <p class="img-text-left"><span style="font-weight: bold;">Cambia soles y dólares </span><br><br> Online</p>
+          <div id="money-img"></div>
+        </div>
+        <div class="info-div" style="background-color: #F4F0FC;">
+          <p class="img-text-right">Descubre lo que tenemos <br> para tu <b>empredimiento</b></p>
+          <div id="handout-img"></div>
+        </div>
+        <div class="info-div" style="background-color: #001F5A;">
+          <p class="img-text-left"><span style="font-weight: bold;">Fondos mutuos  </span><br><br> Invierte y gestiona tus fondos mutuos</p>
+          <div id="rising-img"></div>
+        </div>
+      </div>
+      <div id="main-right">
+        <p class="title">Mis productos</p>
+        <div class="content-side">
+          <div class="cuenta">
+            
+          </div>
+        </div>
+      </div>
+  </div>
   </div>
 
   <script src="scripts/header.js"></script>
