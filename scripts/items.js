@@ -7,5 +7,5 @@ Array.from(document.getElementsByTagName("input")).filter(x => x.type === "tel")
  * @param {Event} ev 
  */
 function just_number(ev) {
-  ev.target.value = ev.target.value.replace(/[^\d]/g,'');
+  ev.target.value = ev.target.value.replace(/[^\d\s]/g,'');
 }

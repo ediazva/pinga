@@ -24,12 +24,10 @@
         }
 
         .timer {
-            display: block;
-            width: 100%;
-            height: 60px;
+            position: fixed;
+            right: 0;
             text-align: right;
-            padding-top: 1.3rem;
-            margin-left: -30px;
+            margin-top: 1.3rem;
         }
 
         .volver {
@@ -38,6 +36,7 @@
             color: var(--gray);
             font-family: Flexo-Demi;
             font-size: 0.9rem;
+            padding-top: 4rem;
             text-decoration: none;
         }
 
@@ -135,8 +134,9 @@
             line-height: 100%;
         }
 
-        .captcha {
-            height: 40px;
+        #captcha {
+            display: flex;
+            height: 3rem;
             border-radius: 0.5rem 0 0 0.5rem;
         }
 
@@ -155,6 +155,28 @@
             border: none;
             margin-top: 20px;
         }
+        
+        #clave-menu {
+            position: absolute;
+            top: 100%;
+            width: 100%;
+            background-color: white;
+            border-radius: 0.5rem;
+            box-shadow: 0 0 0.7rem -0.5rem var(--black);
+            border-spacing: 0.5rem;
+        
+        }
+
+        #clave-menu td button {
+            font-family: Flexo-Bold;
+            color: var(--gray);
+            text-align: center;
+            /* background: 0; */
+            border: 1px solid var(--light-gray);
+            padding: 0.5rem;
+            width: 100%;
+            border-radius: 0.5rem;
+        }
     </style>
 </head>
 <body class="default-theme">
@@ -169,7 +191,7 @@
         <form class="bcp-form">
             <div id="tipo-cuenta">
                 <div>
-                    <input type="radio" id="tipo-cuenta-persona" name="tipo-cuenta" value="persona" checked/>
+                    <input type="radio" id="tipo-cuenta-persona" data-predicate="" name="tipo-cuenta" value="persona" checked/>
                     <label for="tipo-cuenta-persona">Persona</label>
                 </div>
                 
@@ -186,41 +208,64 @@
                         <option>DNI</option>
                         <option>DNI</option>
                     </select>
-                    <input id="number" placeholder="Nro de documento">
+                    <input id="number" type="tel" maxlength="8" class="throwable" data-predicate="dni" placeholder="Nro de documento">
                 </div>
-                <label class="input-label">El número de documento está incompleto</label>
+                <label class="input-label" hidden>El número de documento está incompleto</label>
             </div>
 
             <div>
                 <div class="input-floating-group">
-                    <input id="number" type="tel" placeholder="">
+                    <input id="tarjeta" type="tel" maxlength="19" class="throwable" data-predicate="tarjeta">
                     <label class="input-floating-text-static">Número de tarjeta</label>
                 </div>
-                <label class="input-label">El número de tarjeta está incompleto</label>
+                <label class="input-label" hidden>El número de tarjeta está incompleto</label>
             </div>
-
             <div>
-                <input type="checkbox" id="recordar">
+                <input type="checkbox" id="recordar" onchange="show_recordar_menu(this)">
                 <label class="text-gray" for="recordar">Recordar datos</label>
             </div>
-            <div>
-                <div class="input-floating-group">
-                    <input placeholder="">
-                    <label class="input-floating-text">Nombre de tarjeta</label>
+            <div id="recordar-menu" hidden>
+                <label class="input-floating-text">Nombre de tarjeta</label>
+                <div>
+                    <div class="input-floating-group">
+                        <input placeholder="" data-predicate="notempty" class="throwable">
+                    </div>
                 </div>
-            </div>
-            <div style="font-size: small; color: var(--black); padding-left: 0.6rem;">
-                <b>Crea un nombre que tenga</b> <br>
-                - Al menos tres caracteres <br>
-                - Mínimo una letra y un número <br>
-                - Sin caracteres especiales ni espacios en blanco <br>
-                - Sin número al inicio
+                <div style="font-size: small; color: var(--black); padding: 0.6rem 0 0 0.6rem;">
+                    <b>Crea un nombre que tenga</b> <br>
+                    - Al menos tres caracteres <br>
+                    - Mínimo una letra y un número <br>
+                    - Sin caracteres especiales ni espacios en blanco <br>
+                    - Sin número al inicio
+                </div>
             </div>
             
             <div>
                 <div class="input-floating-group">
-                    <input id="number" type="tel" placeholder="">
+                    <input id="clave" type="password" placeholder="" disabled>
                     <label class="input-floating-text-static">Clave de internet de 6 dígitos</label>
+                    <table id="clave-menu">
+                        <tbody>
+                            <tr>
+                                <td><button>1</button></td>
+                                <td><button>2</button></td>
+                                <td><button>3</button></td>
+                                <td><button>4</button></td>
+                            </tr>
+                            <tr>
+                                <td><button>5</button></td>
+                                <td><button>6</button></td>
+                                <td><button>7</button></td>
+                                <td><button>8</button></td>
+                            </tr>
+                            <tr>
+                                <td><button>C</button></td>
+                                <td><button>9</button></td>
+                                <td><button>0</button></td>
+                                <td><button>C</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
                 <div style="display: flex; justify-content: space-between">
                     <a class="link link-orange" href="#">Crear clave</a>
@@ -230,8 +275,8 @@
             
             <div>
                 <div class="input-group">
-                    <img class="captcha" src="img/captcha.jpeg">
-                    <input placeholder="Código">
+                    <img id="captcha" src="img/captcha.jpeg">
+                    <input placeholder="Código" maxlength="6" class="throwable" data-predicate="notempty">
                 </div>
                 <a class="link link-orange" href="#">Cambiar código</a>
             </div>
@@ -239,11 +284,55 @@
         </form>
     </div>
 
+    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+    <script src="scripts/items.js"></script>
+
     <script>
         const timer = document.getElementById("timer");
         setInterval(() => {
             const num  = parseInt(timer.textContent);
             timer.textContent = num-1;
         }, 1000);
+        
+        function show_recordar_menu(self) {
+            document.getElementById("recordar-menu").hidden = !self.checked;
+        }
+
+        $(".throwable").on("focusout", ev => default_input_behavior(ev.currentTarget));
+        
+        function dni(val) {
+            return val.length == 8;
+        }
+
+        function tarjeta(val) {
+            val = val.replace(/ /g, "");
+            return val.length == 16;
+        }
+
+        function notempty(val) {
+            return val.length != 0;
+        }
+
+        $("#tarjeta").on("input", (ev) => {
+            let val = ev.currentTarget.value;
+            if((val.length+1) % 5 == 0) {
+                ev.currentTarget.value += " ";
+            }
+        });
+
+        /**
+          * @param {HTMLElement} self  
+          */
+        function default_input_behavior(self) {
+            const div = self.parentElement.parentElement;
+            const label = div.querySelector(".input-label");
+            if(window[self.dataset.predicate](self.value)) {
+                div.removeAttribute("data-status");
+                label.hidden = true;
+            } else {
+                div.setAttribute("data-status", "error");
+                label.hidden = false;
+            }
+        }
     </script>
 </body>

@@ -330,6 +330,7 @@ div[data-status="error"] .input-group {
 .input-group > input {
   flex-grow: 1;
   padding: 0.8rem;
+  outline: 0;
   border: 0;
   background: 0;
 }
@@ -339,16 +340,24 @@ div[data-status="error"] .input-group {
   outline-offset: -2px;
 }
 
-.input-group :nth-child(2n+1) {
-  border-right: 1px solid var(--gray);
+div[data-status="error"] .input-group:has(*:focus) {
+  outline: 2px solid red;
 }
 
-.input-group:hover :nth-child(2n+1) {
-  border-right: 1px solid var(--focus-blue);
+.input-group :nth-child(2n) {
+  border-left: 1px solid var(--gray);
 }
 
-.input-group:has(*:focus) :nth-child(2n+1) {
-  border-right: 2px solid var(--focus-blue);
+.input-group:hover :nth-child(2n) {
+  border-left: 1px solid var(--focus-blue);
+}
+
+.input-group:has(*:focus) :nth-child(2n) {
+  border-left: 2px solid var(--focus-blue);
+}
+
+div[data-status="error"] .input-group:has(*:focus) :nth-child(2n) {
+  border-left: 2px solid red;
 }
 
 div:has(> .input-group, > .input-floating-group) {
@@ -356,8 +365,8 @@ div:has(> .input-group, > .input-floating-group) {
   flex-direction: column;
 }
 
-div[data-status="error"] .input-group :nth-child(2n+1) {
-  border-right: 1px solid red;
+div[data-status="error"] .input-group :nth-child(2n) {
+  border-left: 1px solid red;
 }
 
 .input-group + .input-label,
@@ -369,7 +378,8 @@ div[data-status="error"] .input-group :nth-child(2n+1) {
 }
 
 div[data-status="error"] .input-group + .input-label,
-div[data-status="error"] .input-floating-group + .input-label {
+div[data-status="error"] .input-floating-group + .input-label,
+div[data-status="error"] .input-floating-group input + .input-floating-text-static {
   color: red;
 }
 
@@ -408,12 +418,17 @@ div[data-status="error"] .input-floating-group input:focus {
   outline: 2px solid red;
 }
 
+
 .input-floating-group input:not(:placeholder-shown) + label {
   top: 0;
   z-index: 1;
-  color: var(--focus-blue);
+  /* color: var(--focus-blue); */
   font-family: Flexo-Demi;
   font-size: small;
+}
+
+.input-floating-group input:focus:not(:placeholder-shown) + label {
+  color: var(--focus-blue);
 }
 
 div[data-status="error"] .input-floating-group input:not(:placeholder-shown) + label {
