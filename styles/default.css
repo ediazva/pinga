@@ -24,6 +24,7 @@
   --orange: #ff7800;
   --black: #202e44;
   --gray: #868f9e;
+  --light-gray: #bfc4cc;
   --focus-blue: #0a47f0;
   --light-blue: #3d77ff;
   margin: 0;
@@ -38,6 +39,10 @@
   color: var(--blue);
 }
 
+.text-gray {
+  color: var(--gray);
+}
+
 .text-center {
   text-align: center;
 }
@@ -46,12 +51,20 @@
   font-family: "Flexo-Demi";
 }
 
+.fw-bold {
+  font-family: "Flexo-Bold";
+}
+
 .text-white {
   color: white;
 }
 
 #container {
   padding: 3.25rem 20%;
+}
+
+label[for] {
+  cursor: pointer;
 }
 
 header {
@@ -119,6 +132,22 @@ header {
   background-color: white;
   list-style-type: none;
   z-index: 1;
+}
+
+.link {
+  font-size: small;
+  font-family: Flexo-Demi;
+  text-decoration: none;
+}
+
+.link:hover {
+  text-underline-offset: 0.4rem;
+  text-decoration: underline;
+  text-decoration-thickness: 0.1rem;
+}
+
+.link-orange {
+  color: var(--orange);
 }
 
 .dropdown-link {
@@ -242,39 +271,209 @@ form {
   flex-direction: column;
 }
 
-form button {
+.btn {
   font-family: "Flexo-Demi";
   width: fit-content;
   margin: auto;
-  color: white;
-  background-color: var(--orange);
   border: 0;
   border-radius: 1.5rem;
   padding: 0.75rem 4rem;
   transition: all 250ms ease;
 }
 
-form button:hover {
+.btn:hover {
   box-shadow: 0 0 0.5rem -0.2rem var(--black);
   filter: brightness(120%);
 }
 
+.btn-orange {
+  color: white;
+  background-color: var(--orange);
+}
+
 /*Input*/
+input {
+  font-size: medium;
+}
+
 .input-group {
   display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  border: 1px solid var(--gray);
+  border-radius: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+div[data-status="error"] .input-group {
+  border: 1px solid red;
+}
+
+.input-group:hover {
+  border: 1px solid var(--focus-blue);
+}
+
+.input-select {
+  display: flex;
+  font-family: Flexo-Demi;
+  border: 0;
+  color: var(--black);
+  padding: 0 0.5rem;
+  background: 0;
+}
+
+::placeholder {
+  font-family: Flexo-Demi;
+  color: var(--light-gray);
+}
+
+.input-group > input {
+  flex-grow: 1;
+  padding: 0.8rem;
+  border: 0;
+  background: 0;
+}
+
+.input-group:has(*:focus) {
+  outline: 2px solid var(--focus-blue);
+  outline-offset: -2px;
+}
+
+.input-group :nth-child(2n+1) {
+  border-right: 1px solid var(--gray);
+}
+
+.input-group:hover :nth-child(2n+1) {
+  border-right: 1px solid var(--focus-blue);
+}
+
+.input-group:has(*:focus) :nth-child(2n+1) {
+  border-right: 2px solid var(--focus-blue);
+}
+
+div:has(> .input-group, > .input-floating-group) {
+  display: flex;
   flex-direction: column;
+}
+
+div[data-status="error"] .input-group :nth-child(2n+1) {
+  border-right: 1px solid red;
+}
+
+.input-group + .input-label,
+.input-floating-group + .input-label {
+  color: var(--gray);
+  font-size: smaller;
+  text-align: start;
+  padding-left: 1rem;
+}
+
+div[data-status="error"] .input-group + .input-label,
+div[data-status="error"] .input-floating-group + .input-label {
+  color: red;
+}
+
+/*Input Floating Group*/
+
+.input-floating-group {
+  margin: 0.5rem 0rem 0rem;
+  margin-bottom: 0.5rem;
+  position: relative;
+  display: flex;
+}
+
+.input-floating-group input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0.8rem;
+  border: 1px solid var(--gray);
+  border-radius: 0.5rem;
+  background-color: transparent;
+}
+
+div[data-status="error"] .input-floating-group input {
+  border: 1px solid red;
+}
+
+.input-floating-group input:hover {
+  border: 1px solid var(--focus-blue);
+}
+
+.input-floating-group input:focus {
+  outline: 2px solid var(--focus-blue);
+  outline-offset: -2px;
+}
+
+div[data-status="error"] .input-floating-group input:focus {
+  outline: 2px solid red;
+}
+
+.input-floating-group input:not(:placeholder-shown) + label {
+  top: 0;
+  z-index: 1;
+  color: var(--focus-blue);
+  font-family: Flexo-Demi;
+  font-size: small;
+}
+
+div[data-status="error"] .input-floating-group input:not(:placeholder-shown) + label {
+  color: red;
+}
+
+.input-floating-group .input-floating-text {
+  pointer-events: none;
+  background-color: white;
+  position: absolute;
+  font-family: "Flexo-Bold", helvetica, arial, sans-serif;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: -1; 
+  color: var(--gray);
+  margin: 0 1rem;
+  transition: all 250ms ease-out;
+}
+
+.input-floating-group input:hover + .input-floating-text-static {
+  color: gray;
+}
+
+.input-floating-group input:focus + .input-floating-text-static {
+  color: var(--focus-blue);
+}
+
+.input-floating-group .input-floating-text-static {
+  pointer-events: none;
+  color: var(--gray);
+  font-family: Flexo-Demi;
+  transform: translateY(-50%);
+  background-color: white;
+  position: absolute;
+  font-size: small;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  margin: 0 1rem;
+}
+
+/* .input-group {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
   margin-bottom: 1rem;
 }
 
 .input-floating-group {
+  margin: 0.5rem 0rem;
   position: relative;
+  display: flex;
 }
 
-.input-floating-group + label {
+.input-group > label:last-child {
   color: var(--gray);
   font-size: small;
+  text-align: start;
   padding-left: 1rem;
-  padding-top: 0.2rem;
 }
 
 .input-floating-group input {
@@ -303,7 +502,15 @@ form button:hover {
   font-size: small;
 }
 
-.input-floating-group label {
+.input-floating-group input:hover + .input-floating-text-static {
+  color: gray;
+}
+
+.input-floating-group input:focus + .input-floating-text-static {
+  color: var(--focus-blue);
+}
+
+.input-floating-group .input-floating-text {
   pointer-events: none;
   background-color: white;
   position: absolute;
@@ -317,6 +524,20 @@ form button:hover {
   transition: all 250ms ease-in-out;
 }
 
+.input-floating-group .input-floating-text-static {
+  pointer-events: none;
+  color: var(--gray);
+  font-family: Flexo-Demi;
+  transform: translateY(-50%);
+  background-color: white;
+  position: absolute;
+  font-size: small;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  margin: 0 1rem;
+}
+
 .input-group[data-status="error"] .input-floating-group input {
   border: 1px solid red;
 }
@@ -328,9 +549,9 @@ form button:hover {
   color: red;
 }
 
-.input-group[data-status="error"] .input-floating-group + label {
+.input-group[data-status="error"] > label:last-child {
   color: red;
-}
+} */
 
 .bienvenida {
   z-index: -1;
@@ -480,7 +701,7 @@ form button:hover {
   margin-top: 209px;
 }
 
-#main-content {
+#main-content-a {
   display: flex;
   flex-wrap: wrap;
   position: relative;

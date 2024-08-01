@@ -7,7 +7,7 @@
 
 .icon {
   font-family: icon,sans-serif;
-  display: flex;
+  display: inline-flex;
   justify-content: center;
   align-self: center;
   line-height: 1;
@@ -25,6 +25,10 @@
 
 .icon-angle-right:before {
   content: "\f111";
+}
+
+.icon-angle-left-r:before {
+  content: "\f110";
 }
 
 .icon-angle-up:before {
@@ -105,4 +109,8 @@
 
 .icon-money-dollars-exchange-r:before {
   content: "\f268";
+}
+
+.icon-chronometer-r:before {
+  content: "\f177";
 }
