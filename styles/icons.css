@@ -114,3 +114,15 @@
 .icon-chronometer-r:before {
   content: "\f177";
 }
+
+.icon-trash-r:before {
+  content: "\f2fc"
+}
+
+.icon-backspace-r:before {
+  content: "\f124"
+}
+
+.icon-lock-b:before {
+  content: "\f226";
+}

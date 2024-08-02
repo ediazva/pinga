@@ -4,13 +4,6 @@
     <link rel="stylesheet" href="styles/default.css">
     <link rel="stylesheet" href="styles/icons.css">
     <style>
-        /*body {
-            margin: 0px;
-            overflow: auto;
-            font-family: helvetica, Arial, sans-serif;
-            color: rgb(32, 46, 68);
-        }*/
-
         #left {
             position: fixed;
             top: 0;
@@ -164,18 +157,29 @@
             border-radius: 0.5rem;
             box-shadow: 0 0 0.7rem -0.5rem var(--black);
             border-spacing: 0.5rem;
-        
         }
 
-        #clave-menu td button {
+        .clave-button {
             font-family: Flexo-Bold;
             color: var(--gray);
             text-align: center;
-            /* background: 0; */
             border: 1px solid var(--light-gray);
             padding: 0.5rem;
-            width: 100%;
             border-radius: 0.5rem;
+            cursor: pointer;
+            transition: background 300ms ease-out;
+        }
+
+        .clave-button:hover {
+            background: #eff0f2;
+        }
+
+        .clave-button-icon {
+            color: var(--gray);
+            cursor: pointer;
+            text-align: center;
+            padding: 0.5rem;
+            font-size: 1.2rem;
         }
     </style>
 </head>
@@ -205,17 +209,17 @@
                 <div class="input-group">
                     <select class="input-select">
                         <option>DNI</option>
-                        <option>DNI</option>
-                        <option>DNI</option>
+                        <option>CE</option>
+                        <option>PAS</option>
                     </select>
-                    <input id="number" type="tel" maxlength="8" class="throwable" data-predicate="dni" placeholder="Nro de documento">
+                    <input id="number" type="tel" maxlength="8" autocomplete="off" class="throwable" data-predicate="dni" placeholder="Nro de documento">
                 </div>
                 <label class="input-label" hidden>El número de documento está incompleto</label>
             </div>
 
             <div>
                 <div class="input-floating-group">
-                    <input id="tarjeta" type="tel" maxlength="19" class="throwable" data-predicate="tarjeta">
+                    <input id="tarjeta" type="tel" maxlength="19" autocomplete="off" class="throwable" data-predicate="tarjeta">
                     <label class="input-floating-text-static">Número de tarjeta</label>
                 </div>
                 <label class="input-label" hidden>El número de tarjeta está incompleto</label>
@@ -242,27 +246,27 @@
             
             <div>
                 <div class="input-floating-group">
-                    <input id="clave" type="password" placeholder="" disabled>
+                    <input id="clave" type="password" maxlength="6" class="throwable" data-predicate="clave" readonly>
                     <label class="input-floating-text-static">Clave de internet de 6 dígitos</label>
-                    <table id="clave-menu">
+                    <table id="clave-menu" hidden>
                         <tbody>
                             <tr>
-                                <td><button>1</button></td>
-                                <td><button>2</button></td>
-                                <td><button>3</button></td>
-                                <td><button>4</button></td>
+                                <td class="clave-button"></td>
+                                <td class="clave-button"></td>
+                                <td class="clave-button"></td>
+                                <td class="clave-button"></td>
                             </tr>
                             <tr>
-                                <td><button>5</button></td>
-                                <td><button>6</button></td>
-                                <td><button>7</button></td>
-                                <td><button>8</button></td>
+                                <td class="clave-button"></td>
+                                <td class="clave-button"></td>
+                                <td class="clave-button"></td>
+                                <td class="clave-button"></td>
                             </tr>
                             <tr>
-                                <td><button>C</button></td>
-                                <td><button>9</button></td>
-                                <td><button>0</button></td>
-                                <td><button>C</button></td>
+                                <td class="clave-button-icon" onclick="clear_all_clave()"><i class="icon icon-trash-r"></i></td>
+                                <td class="clave-button"></td>
+                                <td class="clave-button"></td>
+                                <td class="clave-button-icon" onclick="clear_one_clave()"><i class="icon icon-backspace-r"></i></td>
                             </tr>
                         </tbody>
                     </table>
@@ -313,12 +317,44 @@
             return val.length != 0;
         }
 
+        function clave(val) {
+            return val.length == 6;
+        }
+
+        function show_clave_menu() {
+            $("#clave-menu").show();
+        }
+
         $("#tarjeta").on("input", (ev) => {
             let val = ev.currentTarget.value;
             if((val.length+1) % 5 == 0) {
                 ev.currentTarget.value += " ";
             }
         });
+
+        $("#clave").on("click", ev => {$("#clave-menu").show();})
+        $(document).on("mouseup", ev => {
+            const menu = $("#clave-menu");
+            if(!menu.is(ev.target) && menu.has(ev.target).length == 0) {
+                menu.hide();
+                $("#clave").focusout();
+            }
+        });
+        $("#clave-menu td").on("click", ev => {
+            $("#clave").val(function() {
+                return this.value.length < 6 ? this.value + ev.target.textContent : this.value;
+            });
+        });
+
+        function clear_all_clave() {
+            $("#clave").val("");
+        }
+
+        function clear_one_clave() {
+            $("#clave").val(function () {
+                return this.value.slice(0, this.value.length-1);
+            });
+        }
 
         /**
           * @param {HTMLElement} self  
@@ -334,5 +370,13 @@
                 label.hidden = false;
             }
         }
+
+        function load_button_content() {
+            const text = Array.from("0123456789").map(x => ({x, sort: Math.random()})).sort((a,b) => a.sort - b.sort).map(({x}) => x);
+            const td = document.querySelectorAll(".clave-button");
+            for(let i = 0; i < td.length; ++i)
+                td[i].textContent = text[i];
+        }
+        load_button_content();
     </script>
 </body>
